@@ -12,8 +12,8 @@ const DIRS: [(i32, i32); 8] = [
     (-1, -1),
 ];
 
-pub fn day_four() {
-    let input = fs::read_to_string(r"C:\Users\Emil\RustroverProjects\AdventOfCode\src\day04\input.txt").expect("Could not read file");
+pub fn day_four(path: &str) {
+    let input = fs::read_to_string(path).expect("Could not read file");
     let grid = input
         .lines()
         .map(|l| l.chars().collect::<Vec<_>>())
@@ -62,6 +62,6 @@ pub fn day_four() {
         }
     }
 
-    println!("{}", part1);
-    println!("{}", part2);
+    println!("Part 1: {part1}");
+    println!("Part 2: {part2}");
 }
