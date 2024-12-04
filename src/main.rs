@@ -14,8 +14,7 @@ use day04::day04::*;
 
 fn main() {
     println!("--- Day 2 ---");
-    day_two_part_one().unwrap();
-    day_two_part_two().unwrap();
+    day_two(r"src/day02/day02_input.txt").unwrap();
     println!("--- Day 3 ---");
     day_three(r"src\day03\day03_input.txt");
     println!("--- Day 4 ---");

@@ -2,21 +2,6 @@ use std::error::Error;
 use std::fs;
 use std::path::Path;
 
-fn get_input() -> Vec<Vec<usize>> {
-    let input = fs::read_to_string(Path::new("src/day02/day02_input.txt"))
-        .expect("Something went wrong with the input");
-    input
-        .trim()
-        .lines()
-        .map(|line| {
-            line.split_whitespace()
-                .map(|elem| elem.parse())
-                .collect::<Result<Vec<usize>, _>>()
-                .unwrap()
-        })
-        .collect()
-}
-
 fn is_safe(report: &[usize], ignore_report: Option<usize>) -> bool {
     let mut previous_sign: Option<bool> = None;
     let mut unsafe_report = false;
@@ -45,33 +30,32 @@ fn is_safe(report: &[usize], ignore_report: Option<usize>) -> bool {
     !unsafe_report
 }
 
-pub fn day_two_part_one() -> Result<(), Box<dyn Error + 'static>> {
-    let input = get_input();
-    let mut safe_report_count = 0;
+pub fn day_two(path: &str) -> Result<(), Box<dyn Error + 'static>> {
+
+    let input = fs::read_to_string(Path::new(path))?
+        .trim()
+        .lines()
+        .map(|line| {
+            line.split_whitespace()
+                .map(|elem| elem.parse())
+                .collect::<Result<Vec<usize>, _>>()
+        })
+        .collect::<Result<Vec<Vec<usize>>, _>>()?;
+
+    let mut safe_report_count_p1 = 0;
+    let mut safe_report_count_p2 = 0;
+
     for report in input {
         if is_safe(&report, None) {
-            safe_report_count += 1;
+            safe_report_count_p1 += 1;
         }
-    }
-    println!("There is {} safe reports", safe_report_count);
-    Ok(())
-}
-
-pub fn day_two_part_two() -> Result<(), Box<dyn Error + 'static>> {
-    let input = get_input();
-
-    let mut safe_report_count = 0;
-
-    for report in input {
         if is_safe(&report, None) || (0..report.len()).any(|i| is_safe(&report, Some(i))) {
-            safe_report_count += 1;
+            safe_report_count_p2 += 1;
         }
     }
 
-    println!(
-        "Taking the Problem Dampener into account, there are actually {} safe reports",
-        safe_report_count
-    );
+    println!("There is {} safe reports", safe_report_count_p1);
+    println!("Taking the Problem Dampener into account, there are actually {} safe reports", safe_report_count_p2);
 
     Ok(())
 }
