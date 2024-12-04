@@ -42,20 +42,20 @@ pub fn day_two(path: &str) -> Result<(), Box<dyn Error + 'static>> {
         })
         .collect::<Result<Vec<Vec<usize>>, _>>()?;
 
-    let mut safe_report_count_p1 = 0;
-    let mut safe_report_count_p2 = 0;
+    let mut part1 = 0;
+    let mut part2 = 0;
 
     for report in input {
         if is_safe(&report, None) {
-            safe_report_count_p1 += 1;
+            part1 += 1;
         }
         if is_safe(&report, None) || (0..report.len()).any(|i| is_safe(&report, Some(i))) {
-            safe_report_count_p2 += 1;
+            part2 += 1;
         }
     }
 
-    println!("There is {} safe reports", safe_report_count_p1);
-    println!("Taking the Problem Dampener into account, there are actually {} safe reports", safe_report_count_p2);
+    println!("Part 1 :{part1}");
+    println!("Part 2 :{part2}");
 
     Ok(())
 }

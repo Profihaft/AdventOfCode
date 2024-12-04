@@ -3,8 +3,8 @@ use std::fs;
 pub fn day_three(path: &str) {
     let file = fs::read_to_string(path).expect("Could not read file");
 
-    let mut sum1 = 0;
-    let mut sum2 = 0;
+    let mut part1 = 0;
+    let mut part2 = 0;
 
     let mut s = String::new();
     let mut mul_mode = false;
@@ -42,10 +42,10 @@ pub fn day_three(path: &str) {
             let right = s.parse::<i32>().unwrap();
             let product = left.unwrap() * right;
 
-            sum1 += product;
+            part1 += product;
 
             if should_do {
-                sum2 += product;
+                part2 += product;
             }
 
             s.clear();
@@ -69,6 +69,6 @@ pub fn day_three(path: &str) {
         }
     }
 
-    println!("Part 1: {sum1}");
-    println!("Part 2: {sum2}");
+    println!("Part 1: {part1}");
+    println!("Part 2: {part2}");
 }
