@@ -13,12 +13,16 @@ mod day04{
 mod day05 {
     pub mod day05;
 }
+mod day06{
+    pub mod day06;
+}
 
 use day01::day01::*;
 use day02::day02::*;
 use day03::day03::*;
 use day04::day04::*;
 use day05::day05::*;
+use day06::day06::*;
 
 fn main() {
     println!("--- Day1 ---");
@@ -31,4 +35,6 @@ fn main() {
     day_four(r"src\day04\day04_input.txt");
     println!("--- Day 5 ---");
     day_five(r"src\day05\day05_input.txt");
+    println!("--- Day 6 ---");
+    day_six(r"src\day06\day06_input.txt").unwrap();
 }

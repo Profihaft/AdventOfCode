@@ -9,3 +9,4 @@ nom = "8.0.0-alpha2"
 clap = { version = "4.5.22", features = ["derive"] }
 anyhow = "1.0.94"
 rayon = "1.10.0"
+wasm-bindgen = "0.2.97"
